@@ -1,0 +1,56 @@
+[ 
+    {
+      "parcelid": 1003456,
+      "userid": 1,
+      "parcelweight": 1,
+      "parcelorigin":"KK 802 st",
+      "parceldestination":"kk 532 st",
+      "status":"Delivered",
+      "createdtime":"Thu 21.11.2018 12:40"
+    },
+    {
+      "parcelid": 1003457,
+      "userid": 2,
+      "parcelweight": 1,
+      "parcelorigin":"KK 802 st",
+      "parceldestination":"kk 532 st",
+      "status":"Delivered",
+      "createdtime":"Thu 21.11.2018 12:40"
+    },
+    {
+      "parcelid": 1003458,
+      "userid": 3,
+      "parcelweight": 1003459,
+      "parcelorigin":"KK 802 st",
+      "parceldestination":"kk 532 st",
+      "status":"in transit",
+      "createdtime":"Thu 21.11.2018 12:40"
+    },
+    {
+      "parcelid": 1003459,
+      "userid": 1,
+      "parcelweight": 1,
+      "parcelorigin":"KK 802 st",
+      "parceldestination":"kk 532 st",
+      "status":"Delivered",
+      "createdtime":"Thu 21.11.2018 12:40"
+    },
+    {
+      "parcelid": 1003460,
+      "userid": 3,
+      "parcelweight": 1,
+      "parcelorigin":"KK 802 st",
+      "parceldestination":"kk 532 st",
+      "status":"in transit",
+      "createdtime":"Thu 21.11.2018 12:40"
+    },
+    {
+      "parcelid": 1003461,
+      "userid": 2,
+      "parcelweight": 1,
+      "parcelorigin":"KK 802 st",
+      "parceldestination":"kk 532 st",
+      "status":"Delivered",
+      "createdtime":"Thu 21.11.2018 12:40"
+    }
+  ]
