@@ -3,7 +3,7 @@ const Joi = require("joi");
 //this is for checking correct information when a new user register
 exports.RegistrationValidator = (req, res, next) => {
   const schema = {
-    userid: Joi.number(),
+    // userid: Joi.number(),
     name: Joi.string().required(),
     email: Joi.string()
       .email()
@@ -11,7 +11,11 @@ exports.RegistrationValidator = (req, res, next) => {
     password: Joi.string()
       .min(4)
       .max(10)
-      .required()
+      .required(),
+    // retype_password: Joi.string()
+    //   .min(4)
+    //   .max(10)
+    //   .required()
   };
   Joi.validate(req.body, schema, (err, value) => {
     if (err) {
@@ -39,7 +43,7 @@ exports.LoginValidator = (req, res, next) => {
   Joi.validate(req.body, schema, (err, value) => {
     if (err) {
       res.status(400).json({
-        message: "invalid user information"
+        message: "plz sign in!!!!"
       });
     } else {
       next();

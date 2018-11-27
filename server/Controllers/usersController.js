@@ -1,5 +1,7 @@
 const users = require("./../data/users.json");
 const parcels = require("./../data/parcels.json");
+const pg = require('pg');
+const pool = require('./../db/config');
 
 //this here will fetch for parcels of a specific user
 
@@ -14,20 +16,20 @@ exports.findUser = function(req, res) {
 };
 
 // create new user
-exports.Register = (req, res) => {
-  const { name, email, password } = req.body;
-  const newUser = {
-    id: users.length + 1,
+exports.Register = function (req, res) {
+  const { name, email, password} = req.body;
+  pool.query('INSERT INTO users (name, email, password) VALUES($1, $2, $3)', [
     name,
     email,
-    password,
-    created_time: Date.now()
-  };
-  users.push(newUser);
-  return res.status(201).json({
-    message: "Account Created!",
-    users
-  });
+    password
+    
+  ]).then(Response =>{
+    res.status(200).json({
+        users: Response.rows
+    });
+}).catch(err =>{
+    console.log(err)
+});
 };
 
 exports.Login = (req, res) => {

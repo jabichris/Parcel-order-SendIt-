@@ -21,7 +21,7 @@ routes.put(
 routes.get("/api/v1/users/:userid/parcels", usersController.findUser);
 
 //this code are fetching for the specific parcelid and return all the info about it
-routes.get("/api/v1/parcels/:parcelid", parcelsControllers.getOne);
+routes.get("/api/v1/parcels/:id", parcelsControllers.getOne);
 
 //this here fetch for all parcels orders
 routes.get("/api/v1/parcels", parcelsControllers.getAll);
