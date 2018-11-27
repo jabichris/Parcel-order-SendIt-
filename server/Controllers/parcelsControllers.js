@@ -1,4 +1,8 @@
+const routes = require("express").Router();
 const parcels = require("./../data/parcels.json");
+const pg = require('pg');
+const pool = require('./../db/config');
+
 const postOne = (req, res) => {
   const parcel = {
     parcelid: parcels.length + 1,
@@ -27,13 +31,18 @@ const parcelCancelation = (req, res) => {
   res.send(parcel);
 };
 
-//this here fetch for all parcels orders
-const getAll = (req, res) => {
-  res.status(200).send({
-    parcels: parcels
+
+
+const getAll = (req, res, next) =>{ 
+  pool.query('SELECT * from parcels').then(response =>{
+      res.status(200).json({
+          parcels: response.rows
+      });
+  }).catch(err =>{
+      console.log(err)
   });
-};
-//this code are fetching for the specific parcelid and return all the info about it
+}
+
 const getOne = (req, res) => {
   const id = parseInt(req.params.parcelid);
   parcels.map(parcel => {
@@ -46,9 +55,10 @@ const getOne = (req, res) => {
   req.setTimeout(200);
 };
 
+
 module.exports = {
+  postOne,
   getAll,
   getOne,
-  parcelCancelation,
-  postOne
+  parcelCancelation
 };

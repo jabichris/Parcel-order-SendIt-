@@ -6,7 +6,7 @@ const parcelValidate = require("../Validators/parcelValidator");
 const userValidator = require("../Validators/userValidator");
 
 routes.post(
-  "/api/v1/parcels",
+  "/api/auth/users",
   parcelValidate.validator,
   parcelsControllers.postOne
 );
@@ -48,5 +48,10 @@ routes.post(
 routes.get("/", (req, res) => {
   res.status(200).json({ message: "The surver is Up!" });
 });
-
+// routes.get('/cp', (req,res) =>{
+//   pool.query("CREATE TABLE membs(id SERIAL PRIMARY KEY, firstname VARCHAR(40) NOT NULL, lastName VARCHAR(40) NOT NULL)", (err, res) => {
+//       console.log(res)
+//       pool.end();
+//   });
+// });
 module.exports = routes;

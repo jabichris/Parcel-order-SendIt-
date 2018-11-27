@@ -24,8 +24,8 @@ exports.Register = (req, res) => {
     created_time: Date.now()
   };
   users.push(newUser);
-  return res.status(200).json({
-    message: "user registered",
+  return res.status(201).json({
+    message: "Account Created!",
     users
   });
 };

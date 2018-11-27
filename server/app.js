@@ -1,6 +1,5 @@
 // importing our dependencies
 const express = require("express");
-
 const app = express();
 
 const routes = require("./routes");
