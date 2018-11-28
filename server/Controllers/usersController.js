@@ -2,7 +2,7 @@ const users = require("./../data/users.json");
 const parcels = require("./../data/parcels.json");
 const pg = require('pg');
 const pool = require('./../db/config');
-
+const jwt = require ('jsonwebtoken');
 //this here will fetch for parcels of a specific user
 
 exports.findUser = function(req, res) {
@@ -24,21 +24,29 @@ exports.Register = function (req, res) {
     password
     
   ]).then(Response =>{
-    res.status(200).json({
-        users: Response.rows
+    res.status(200).send({
+      message:'User have been Registered'
+        // users: Response.rows[0]
     });
 }).catch(err =>{
     console.log(err)
 });
 };
 
-exports.Login = (req, res) => {
-  const { email, password } = req.body;
-  const findUser = users.find(auser => auser.email == email);
-  if (findUser && findUser.password == password) {
-    res.status(200).json({
-      message: "logged in successfuly",
-      user: findUser
-    });
-  }
+// exports.Login = (req, res) => {
+//   const { email, password } = req.body;
+//   const findUser = users.find(auser => auser.email == email);
+//   if (findUser && findUser.password == password) {
+//     res.status(200).json({
+//       message: "logged in successfuly",
+//       user: findUser
+//     });
+//   }
+// };
+exports.Login = function (req, res){
+  const user = { id:3};
+  const token = jwt.sign({user}, 'my secret key');
+  res.json({
+    token: token
+  });
 };

@@ -30,23 +30,23 @@ exports.RegistrationValidator = (req, res, next) => {
 
 //this is to check correct information when a user login
 
-exports.LoginValidator = (req, res, next) => {
-  const schema = {
-    email: Joi.string()
-      .email()
-      .required(),
-    password: Joi.string()
-      .min(4)
-      .max(10)
-      .required()
-  };
-  Joi.validate(req.body, schema, (err, value) => {
-    if (err) {
-      res.status(400).json({
-        message: "plz sign in!!!!"
-      });
-    } else {
-      next();
-    }
-  });
-};
+// exports.LoginValidator = (req, res, next) => {
+//   const schema = {
+//     email: Joi.string()
+//       .email()
+//       .required(),
+//     password: Joi.string()
+//       .min(4)
+//       .max(10)
+//       .required()
+//   };
+//   Joi.validate(req.body, schema, (err, value) => {
+//     if (err) {
+//       res.status(400).json({
+//         message: "plz sign in!!!!"
+//       });
+//     } else {
+//       next();
+//     }
+//   });
+// };
