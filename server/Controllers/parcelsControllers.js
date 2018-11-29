@@ -107,7 +107,19 @@ const changeStatus = (req, res) => {
 });
  req.setTimeout(200);
 };
-
+const changePresentLocation = (req, res) => {
+  const id = parseInt(req.params.id);
+  const presentLocation = req.body.presentLocation;
+     const updatePresentLocation = `UPDATE parcels SET presentLocation = $1 WHERE id = $2 returning *`;
+ pool.query(updatePresentLocation, [presentLocation,id]).then(response =>{
+  res.status(200).json({
+        parcel: response.rows[0]
+    });
+}).catch(err =>{
+   console.log(err);
+});
+ req.setTimeout(200);
+};
 
 export default {
   postOne,
@@ -115,6 +127,7 @@ export default {
   getOne,
   parcelCancelation,
   changeDestination,
-  changeStatus
+  changeStatus,
+  changePresentLocation
 }
   

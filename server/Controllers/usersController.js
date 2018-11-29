@@ -22,15 +22,6 @@ const createUser = (req, res) => {
 });
 };
 const findUser = (req, res) => {}
-// exports.findUser = function(req, res) {
-//   const id = req.params.userid;
-//   const result = parcels.filter(c => c.userid == id);
-//   if (result) {
-//     res.status(200).send({
-//       parcels: result
-//     });
-//   }
-// };
 
 // create new user
 

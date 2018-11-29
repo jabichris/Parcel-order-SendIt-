@@ -46,7 +46,8 @@ routes.post(
 routes.put('/api/v1/parcels/:id/destination',parcelsControllers.changeDestination);
 // change status of the parcel
 routes.put('/api/v1/parcels/:id/status', jwtAut.ensureToken,parcelsControllers.changeStatus);
-routes.put('/api/v1/parcels/:id/presentlocation',)
+routes.put('/api/v1/parcels/:id/presentlocation',parcelsControllers.changePresentLocation);
+
 routes.get("/", (req, res) => {
   res.status(200).json({ message: "The surver is Up!" });
 });
