@@ -1,0 +1,44 @@
+[
+  {
+    "userid": 1,
+    "username": "MANINGIRI Christophe",
+    "parcels": 5,
+    "Delivered": 3,
+    "in transit": 2
+  },
+  {
+    "userid": 2,
+    "username": "JABIRO Christian",
+    "parcels": 5,
+    "Delivered": 3,
+    "in transit": 2
+  },
+  {
+    "userid": 3,
+    "username": "Milka lys teta",
+    "parcels": 5,
+    "Delivered": 2,
+    "in transit": 3
+  },
+  {
+    "userid": 1,
+    "username": "MANINGIRI Christophe",
+    "parcels": 5,
+    "Delivered": 3,
+    "in transit": 2
+  },
+  {
+    "userid": 2,
+    "username": "JABIRO Christian",
+    "parcels": 6,
+    "Delivered": 3,
+    "in transit": 3
+  },
+  {
+    "userid": 3,
+    "username": "Milka lys teta",
+    "parcels": 7,
+    "Delivered": 3,
+    "in transit": 4
+  }
+]

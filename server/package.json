@@ -1,0 +1,60 @@
+{
+  "name": "sendit_api",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.com/jabichris/SendIT_API.svg?branch=master)](https://travis-ci.com/jabichris/SendIT_API)",
+  "main": "app.js",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.3",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "express": "^4.16.4",
+    "istanbul": "^0.4.5",
+    "joi": "^14.3.0",
+    "jsonwebtoken": "^8.4.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.6.1",
+    "pg-pool": "^2.0.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "heroku": "^7.18.5",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.6",
+    "nyc": "^13.1.0"
+  },
+  "scripts": {
+    "test": "nyc --reporter=text --reporter=lcov mocha --timeout 1000 --require babel-polyfill --require babel-register ./test/appTest.js --exit",
+    "start": "nodemon --exec babel-node app.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "start-dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jabichris/SendIT_API.git"
+  },
+  "author": "JABIRO Christian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jabichris/SendIT_API/issues"
+  },
+  "homepage": "https://github.com/jabichris/SendIT_API#readme"
+}
