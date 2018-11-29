@@ -26,6 +26,9 @@ describe("/GetParcels", () => {
       .get("/api/v1/parcels")
       .end((err, res) => {
         res.should.have.status(200);
+        res.body.should.have
+          .property("message")
+          .eql("parcel Created!!!");
         res.body.should.be.an("object");
         done();
       });
