@@ -94,6 +94,19 @@ const changeDestination = (req, res) => {
 });
  req.setTimeout(200);
 };
+const changeStatus = (req, res) => {
+  const id = parseInt(req.params.id);
+  const status = req.body.status;
+     const updateStatus = `UPDATE parcels SET status = $1 WHERE id = $2 returning *`;
+ pool.query(updateStatus, [status,id]).then(response =>{
+  res.status(200).json({
+        parcel: response.rows[0]
+    });
+}).catch(err =>{
+   console.log(err);
+});
+ req.setTimeout(200);
+};
 
 
 export default {
@@ -101,6 +114,7 @@ export default {
   getAll,
   getOne,
   parcelCancelation,
-  changeDestination
+  changeDestination,
+  changeStatus
 }
   

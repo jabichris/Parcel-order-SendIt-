@@ -1,12 +1,4 @@
-// const routes = require("express").Router();
-// const users = require("./../data/users");
-// const parcelsControllers = require("./../Controllers/parcelsControllers");
-// const usersController = require("./../Controllers/usersController");
-// const parcelValidate = require("../Validators/parcelValidator");
-// const userValidator = require("../Validators/userValidator");
-// const jwt = require ('jsonwebtoken');
 import express from 'express';
-// import users from "./../data/users";
 import parcelsControllers from './../Controllers/parcelsControllers';
 import usersController from './../Controllers/usersController';
 import parcelValidate  from '../Validators/parcelValidator';
@@ -34,41 +26,13 @@ routes.get("/api/v1/users/:userid/parcels", usersController.findUser);
 routes.get("/api/v1/parcels/:id", parcelsControllers.getOne);
 
 //this here fetch for all parcels orders
-routes.get("/api/v1/parcels", jwtAut.ensureToken, parcelsControllers.getAll,
-// function (req,res){jwt.verify(req.token, 'my secret key', function(err,data){
-//   if (err){
-//     res.sendStatus(403)
-//   }
-//   else{
-//       res.json({
-//         text: 'This here is protected',
-//         data: data
-//       })
-//   }
-// })
-)
-// function ensureToken  (req, res, next){
-//   const bearerHeader = req.headers["authorization"];
-//   if (typeof bearerHeader !== 'undefined') {
-//     const bearer = bearerHeader.split(" ");
-//     const bearerToken = bearer[1];
-//     req.token = bearerToken;
-//     next();
-//   } else {
-//     res.sendStatus(403);
-//   }
-// }
+routes.get("/api/v1/parcels", jwtAut.ensureToken, parcelsControllers.getAll,)
 
 //this helps in fetching for all info about users
 routes.get("/api/v1/users", )
-//  => {
-//   res.send({
-//     users: users
-//   });
-// });
+
 //this helps the user create an account
 routes.post("/api/v1/users/register", (req, res) => {
-    // console.log(req.body.name)
   // userValidator.registrationValidator,
   usersController.createUser
   });
@@ -79,14 +43,15 @@ routes.post(
   usersController.login
 );
 //let's give the sever some info once it's up
+routes.put('/api/v1/parcels/:id/destination',parcelsControllers.changeDestination);
+// change status of the parcel
+routes.put('/api/v1/parcels/:id/status', jwtAut.ensureToken,parcelsControllers.changeStatus);
+routes.put('/api/v1/parcels/:id/presentlocation',)
 routes.get("/", (req, res) => {
   res.status(200).json({ message: "The surver is Up!" });
 });
 
-routes.put('/api/v1/parcels/:id/destination',parcelsControllers.changeDestination);
-// import LocationsController from './../../controllers/locations';
 
-// // GET list of all locations
-// router.post('/', LocationsController.create);
-// module.exports = routes;
+
+
 export default routes;
