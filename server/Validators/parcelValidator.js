@@ -1,19 +1,19 @@
-const Joi = require("joi");
+import { number, string, validate } from "joi";
 //this is for checking correct information when creating a new parcel
-exports.validator = (req, res, next) => {
+export function validator(req, res, next) {
   const schema = {
-    item: Joi.string().required(),
-    parcelweight: Joi.number().required(),
-    parcelorigin: Joi.string().required(),
-    parceldestination: Joi.string().required(),
+    item: number(),
+    parcelweight: number().required(),
+    parcelorigin: string().required(),
+    parceldestination: string().required(),
   };
-  Joi.validate(req.body, schema, (err, value) => {
+  validate(req.body, schema, (err, value) => {
     if (err) {
       res.status(400).json({
-        message: "invalid user information"
+        message: "invalid parcel information"
       });
     } else {
       next();
     }
   });
-};
+}

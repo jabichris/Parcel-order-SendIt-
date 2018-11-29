@@ -1,16 +1,15 @@
-const chai = require("chai");
-const chaiHTTP = require("chai-http");
-const HTTP = require("http");
-const app = require("../app");
-chai.should();
+import chai  from 'chai';
+import chaiHTTP from 'chai-http';
+import HTTP from "http";
+import app from "../app";
+const should = chai.should();
 chai.use(chaiHTTP);
 
 //test for home route
 
 describe("/", () => {
   it("it respond if the server is up", done => {
-    chai
-      .request(app)
+    request(app)
       .get("/")
       .end((err, res) => {
         res.should.have.status(200);
@@ -23,8 +22,7 @@ describe("/", () => {
 
 describe("/GetParcels", () => {
   it("it should GET all the parcels", done => {
-    chai
-      .request(app)
+    request(app)
       .get("/api/v1/parcels")
       .end((err, res) => {
         res.should.have.status(200);
@@ -38,9 +36,8 @@ describe("/GetParcels", () => {
 
 describe("/GET parcel details", () => {
   it("it should GET a parcel delivery order", done => {
-    const id = 1003456;
-    chai
-      .request(app)
+    const id = 1;
+    request(app)
       .get(`/api/v1/parcels/${id}`)
       .end((err, res) => {
         res.should.have.status(200);
@@ -54,16 +51,13 @@ describe("/GET parcel details", () => {
 describe("adding a parcel", () => {
   it("should add new parcel", done => {
     const parcel = {
-      parcelid: 1003456,
-      userid: 1,
+      item = "fit",
       parcelweight: 1,
       parcelorigin: "KK 802 st",
       parceldestination: "kk 532 st",
       status: "Delivered",
-      createdtime: "Thu 18.11.2018 13:40"
     };
-    chai
-      .request(app)
+    request(app)
       .post("/api/v1/parcels")
       .send(parcel)
       .end((err, res) => {
@@ -85,8 +79,7 @@ describe("adding invalid parcel", () => {
       status: "Delivered",
       createdtime: "Thu 18.11.2018 13:40"
     };
-    chai
-      .request(app)
+    request(app)
       .post("/api/v1/parcels")
       .send(parcel)
       .end((err, res) => {
@@ -103,8 +96,7 @@ describe("adding invalid parcel", () => {
 describe("Delete a parcel with id 1003456", () => {
   it("should return one parcel object", done => {
     const parcel = 1003456;
-    chai
-      .request(app)
+    request(app)
       .delete(`/api/v1/parcels/${parcel}`)
       .end((err, res) => {
         res.should.have.status(404);
@@ -117,8 +109,7 @@ describe("Delete a parcel with id 1003456", () => {
 describe("Cancel a parcel with id 1003456", () => {
   it("should return one parcel object", done => {
     const parcel = 1003456;
-    chai
-      .request(app)
+    request(app)
       .put(`/api/v1/parcels/${parcel}/cancel`)
       .set("content-type", "application/json")
       .send({
@@ -135,8 +126,7 @@ describe("Cancel a parcel with id 1003456", () => {
 describe("Cancel a parcel with id 10034561000", () => {
   it("should fail to cancel a parcel", done => {
     const parcel = 10034561000;
-    chai
-      .request(app)
+    request(app)
       .put(`/api/v1/parcels/${parcel}/cancel`)
       .end((err, res) => {
         res.should.have.status(404);
@@ -149,8 +139,7 @@ describe("Cancel a parcel with id 10034561000", () => {
 describe("GET user details", () => {
   it("it should GET a user with id=1", done => {
     const id = 1;
-    chai
-      .request(app)
+    request(app)
       .get(`/api/v1/users/${id}/parcels`)
       .end((err, res) => {
         res.should.have.status(200);
@@ -162,8 +151,7 @@ describe("GET user details", () => {
 //test to get all users
 describe("GET user all users", () => {
   it("it should GET all users", done => {
-    chai
-      .request(app)
+    request(app)
       .get(`/api/v1/users`)
       .end((err, res) => {
         res.body.should.be.an("object");
@@ -181,8 +169,7 @@ describe("Register a new users", () => {
       email: "umukiriya@gmail.com",
       password: "password"
     };
-    chai
-      .request(app)
+    request(app)
       .post("/api/v1/users/register")
       .send(user)
       .end((err, res) => {
@@ -202,8 +189,7 @@ describe("Register a new user with unsported information", () => {
       email: "umukiriya",
       password: "password556686"
     };
-    chai
-      .request(app)
+    request(app)
       .post("/api/v1/users/register")
       .send(user)
       .end((err, res) => {
@@ -224,8 +210,7 @@ describe("Login a user", () => {
       email: "umukiriya@gmail.com",
       password: "password"
     };
-    chai
-      .request(app)
+    request(app)
       .post("/api/v1/users/login")
       .send(user)
       .end((err, res) => {
@@ -243,8 +228,7 @@ describe("Login a user with invalid information", () => {
       email: "umukiriya",
       password: 1266
     };
-    chai
-      .request(app)
+    request(app)
       .post("/api/v1/users/login")
       .send(user)
       .end((err, res) => {
@@ -256,4 +240,4 @@ describe("Login a user with invalid information", () => {
       });
   });
 });
-module.exports = app;
+export default app;

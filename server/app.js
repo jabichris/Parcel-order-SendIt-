@@ -1,15 +1,15 @@
 // importing our dependencies
-const express = require("express");
+import express from 'express';
+import routes from './routes';
+import bodyParser from 'body-parser';
 const app = express();
-
-const routes = require("./routes");
-
 const port = process.env.PORT || 3000;
-app.use(express.json());
-app.use("/", routes);
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}))
+app.use("/", routes);
 app.listen(port, () => {
   console.log("App listening on port 3000");
 });
 
-module.exports = app;
+export default app;

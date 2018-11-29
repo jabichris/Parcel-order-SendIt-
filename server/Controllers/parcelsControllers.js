@@ -1,23 +1,35 @@
-const routes = require("express").Router();
+// const routes = require("express").Router();
 // const parcels = require("./../data/parcels.json");
-const pg = require('pg');
-const pool = require('./../db/config');
+// const pg = require('pg');
+import pool from '../db/config'
+import pg from 'pg';
+import jwt from 'jsonwebtoken'
+
+
+
 
 const postOne = (req, res) => {
-  const { item, parcelweight,parcelorigin,parceldestination} = req.body;
-  pool.query('INSERT INTO parcels (item, parcelweight, parcelorigin, parceldestination) VALUES($1, $2, $3, $4)', [
+  const parcelInfo = `INSERT INTO parcels (item, parcelweight, parcelorigin, parceldestination) VALUES($1, $2, $3, $4) RETURNING *`;
+  const {item, parcelweight, parcelorigin, parceldestination} = req.body;
+  pool.query(parcelInfo, [
     item,
     parcelweight,
     parcelorigin,
     parceldestination
   ]).then(Response =>{
-    res.status(200).json({
-        parcels: Response.rows
-    });
+    res.status(201).send({
+        message:"parcel Created!!!"
+        // parcels: Response.rows[0] 
+         });
 }).catch(err =>{
     console.log(err)
 });
 };
+
+
+
+
+
 
 //this will cancel a specific parcel delivery order
 const parcelCancelation = (req, res) => {
@@ -32,13 +44,28 @@ const parcelCancelation = (req, res) => {
 
 
 const getAll = (req, res, next) =>{ 
-  pool.query('SELECT * FROM parcels').then(response =>{
-      res.status(200).json({
-          parcels: response.rows
-      });
-  }).catch(err =>{
+  ///////validat
+
+
+  jwt.verify(req.token, 'amandazi', function(err,data){
+    if (err){
       console.log(err)
-  });
+      // return res.sendStatus(403)
+    }
+    else {
+      pool.query('SELECT * FROM parcels').then(response =>{
+        res.status(200).json({
+            parcels: response.rows
+        });
+    }).catch(err =>{
+        console.log(err)
+    });
+    }
+  })
+  
+
+
+  
 }
 
 const getOne = (req, res) => {
@@ -54,10 +81,10 @@ const getOne = (req, res) => {
   req.setTimeout(200);
 };
 
-
-module.exports = {
+export default {
   postOne,
   getAll,
   getOne,
   parcelCancelation
-};
+}
+  
