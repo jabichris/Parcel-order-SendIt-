@@ -81,10 +81,26 @@ const getOne = (req, res) => {
   req.setTimeout(200);
 };
 
+const changeDestination = (req, res) => {
+  const id = parseInt(req.params.id);
+  const dest = req.body.parceldestination;
+     const updateOneQuery = `UPDATE parcels SET parceldestination = $1 WHERE id = $2 returning *`;
+ pool.query(updateOneQuery, [dest,id]).then(response =>{
+  res.status(200).json({
+        parcel: response.rows[0]
+    });
+}).catch(err =>{
+   console.log(err);
+});
+ req.setTimeout(200);
+};
+
+
 export default {
   postOne,
   getAll,
   getOne,
-  parcelCancelation
+  parcelCancelation,
+  changeDestination
 }
   

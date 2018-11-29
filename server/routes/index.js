@@ -83,6 +83,7 @@ routes.get("/", (req, res) => {
   res.status(200).json({ message: "The surver is Up!" });
 });
 
+routes.put('/api/v1/parcels/:id/destination',parcelsControllers.changeDestination);
 // import LocationsController from './../../controllers/locations';
 
 // // GET list of all locations
