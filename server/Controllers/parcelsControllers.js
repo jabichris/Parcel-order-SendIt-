@@ -10,7 +10,11 @@ import jwt from 'jsonwebtoken'
 
 const postOne = (req, res) => {
   const parcelInfo = `INSERT INTO parcels (item, parcelweight, parcelorigin, parceldestination) VALUES($1, $2, $3, $4) RETURNING *`;
-  const {item, parcelweight, parcelorigin, parceldestination} = req.body;
+  const {
+    item, 
+    parcelweight,
+    parcelorigin,
+    parceldestination} = req.body;
   pool.query(parcelInfo, [
     item,
     parcelweight,
@@ -18,25 +22,19 @@ const postOne = (req, res) => {
     parceldestination
   ]).then(Response =>{
     res.status(201).send({
-        message:"parcel Created!!!"
-        // parcels: Response.rows[0] 
+        message:"Parcel Created!!!"
          });
 }).catch(err =>{
     console.log(err)
 });
 };
 
-
-
-
-
-
 //this will cancel a specific parcel delivery order
 const parcelCancelation = (req, res) => {
   const parcel = parcels.find(
     p => p.parcelid === parseInt(req.params.parcelid)
   );
-  if (!parcel) res.status(404).send("Parcel order with given id was not found");
+  if (!parcel) res.status(404).send("Parcel order with given Id was not found");
   parcel.status = "Canceled";
   res.send(parcel);
 };
